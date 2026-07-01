@@ -1,16 +1,18 @@
 
 
-
+/* -----------------------------------------------------------
+   1. VARIABLES
+----------------------------------------------------------- */
 
 
 :root {
   /* Paleta principal */
-  --color-primary: #D32F2F;       
-  --color-primary-dark: #8F1111;
+  --color-primary: #d84343;       
+  --color-primary-dark: #5a1010;
   --color-primary-light: #E53935;
 
-  --color-accent: #E53935;        
-  --color-accent-dark: #4A0404;
+  --color-accent: #e4bdbd;        
+  --color-accent-dark: #c27d7d;
 
   --color-success: #3FA34D;      
 
@@ -211,10 +213,301 @@ h3 { font-size: 1.25rem; }
   font-size: 0.95rem;
   margin: 0;
 }
+/* -----------------------------------------------------------
+   5. HERO
+----------------------------------------------------------- */
+.hero {
+  background-color: var(--color-primary);
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #fff;
+  padding: var(--space-xl) 0;
+}
+
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.hero-content {
+  flex: 1 1 480px;
+  max-width: 640px;
+}
+
+.hero-content h1 {
+  color: #fff;
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.1rem;
+  margin-top: var(--space-sm);
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.btn-primary-custom {
+  background-color: var(--color-accent);
+  border: none;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--color-accent-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-secondary-custom {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-secondary-custom:hover {
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.hero-visual {
+  flex: 1 1 320px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-badge {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.hero-badge i {
+  font-size: 3rem;
+  color: var(--color-accent);
+}
+
+/* -----------------------------------------------------------
+   6. DIVISOR "RUTA" — elemento de marca
+   Línea punteada que simula una ruta, con un ícono que la recorre.
+----------------------------------------------------------- */
+.route-divider {
+  position: relative;
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-border) 0,
+    var(--color-border) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  margin: var(--space-xl) auto;
+  max-width: 1100px;
+  width: 90%;
+}
+
+.route-divider i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  padding: 0 var(--space-xs);
+  animation: route-travel 6s linear infinite;
+}
+
+@keyframes route-travel {
+  0%   { left: 0%; }
+  100% { left: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-divider i {
+    animation: none;
+    left: 50%;
+  }
+}
+
+/* -----------------------------------------------------------
+   7. SECCIÓN SERVICIOS (cards)
+----------------------------------------------------------- */
+.section {
+  padding: var(--space-xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-lg) auto;
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.service-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  flex: 1 1 300px;
+  max-width: 340px;
+  padding: var(--space-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 107, 53, 0.12);
+  margin-bottom: var(--space-sm);
+}
+
+.service-card-icon i {
+  color: var(--color-accent);
+  font-size: 1.6rem;
+}
+
+.service-card h3 {
+  color: var(--color-primary);
+  text-transform: none;
+  margin-bottom: var(--space-xs);
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* -----------------------------------------------------------
+   8. SECCIÓN "CÓMO FUNCIONA" (pasos de la ruta)
+----------------------------------------------------------- */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  counter-reset: step;
+}
+
+.step {
+  flex: 1 1 220px;
+  position: relative;
+  padding-top: var(--space-md);
+}
+
+.step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.step h3 {
+  color: var(--color-primary);
+  text-transform: none;
+}
+
+.step p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* -----------------------------------------------------------
+   9. FORMULARIOS
+----------------------------------------------------------- */
+.form-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-label-custom {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.18);
+}
+
+.result-box {
+  background-color: rgba(63, 163, 77, 0.08);
+  border: 1px dashed var(--color-success);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+.result-box .result-amount {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--color-success);
+  font-weight: 700;
+}
 
 
-
-
+/* -----------------------------------------------------------
+   10. FOOTER
+----------------------------------------------------------- */
 
 
 
