@@ -1,0 +1,276 @@
+
+
+
+
+
+:root {
+  /* Paleta principal */
+  --color-primary: #D32F2F;       
+  --color-primary-dark: #8F1111;
+  --color-primary-light: #E53935;
+
+  --color-accent: #E53935;        
+  --color-accent-dark: #4A0404;
+
+  --color-success: #3FA34D;      
+
+  --color-bg: #F7F5F0;            
+  --color-surface: #FFFFFF;
+
+  --color-text: #22282F;
+  --color-text-muted: #5C6670;
+  --color-border: #E2DED4;
+
+  /* Tipografía */
+  --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+
+  /* Espaciados (escala) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Otros */
+  --radius: 10px;
+  --shadow-sm: 0 2px 8px rgba(27, 58, 92, 0.08);
+  --shadow-md: 0 8px 24px rgba(27, 58, 92, 0.12);
+}
+
+/* -----------------------------------------------------------
+   2. RESET / BASE
+----------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* -----------------------------------------------------------
+   3. TIPOGRAFÍA GENERAL
+----------------------------------------------------------- */
+h1, h2, h3, h4,
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-dark);
+  font-weight: 600;
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted);
+}
+
+/* -----------------------------------------------------------
+   4. NAVBAR
+----------------------------------------------------------- */
+.navbar-custom {
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+}
+
+.navbar-brand-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary) 
+}
+
+.navbar-brand-custom i {
+  color: var(--color-accent);
+}
+
+.navbar-custom .nav-link {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-left: var(--space-sm);
+  transition: color 0.2s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: var(--color-accent) 
+}
+
+.btn-nav-cta {
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+  margin-left: var(--space-sm);
+}
+
+.btn-nav-cta:hover {
+  background-color: var(--color-accent-dark);
+  color: #fff 
+}
+
+.section {
+  padding: var(--space-xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-lg) auto;
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.service-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  flex: 1 1 300px;
+  max-width: 340px;
+  padding: var(--space-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 107, 53, 0.12);
+  margin-bottom: var(--space-sm);
+}
+
+.service-card-icon i {
+  color: var(--color-accent);
+  font-size: 1.6rem;
+}
+
+.service-card h3 {
+  color: var(--color-primary);
+  text-transform: none;
+  margin-bottom: var(--space-xs);
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+footer {
+  background-color: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding: var(--space-xl) 0 var(--space-md) 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm) var(--space-lg) var(--space-sm);
+}
+
+.footer-col {
+  flex: 1 1 200px;
+}
+
+.footer-col h3 {
+  color: #fff;
+  text-transform: none;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--color-accent);
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--space-md);
+  margin: 0 var(--space-sm);
+}
