@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Tarifas — FletesYA</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+            <div class="container-custom">
+                <a class="navbar-brand navbar-brand-custom" href="../index.html">
+                    <i class="bi bi-truck"></i> FletesYA
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <ul class="navbar-nav align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./presupuesto.html">Presupuesto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./nosotros.html">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link btn-nav-cta" href="./formulario.html">Pedir flete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: var(--space-lg) 0;">
+            <div class="container-custom">
+                <span class="eyebrow" style="color: var(--color-accent);"><i class="bi bi-shield-lock"></i> Solo uso interno</span>
+                <h1 style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Panel de tarifas</h1>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container-custom">
+                <div class="form-section" style="max-width: 900px;">
+                    <p class="text-muted-custom mb-4">
+                        Acá podés cambiar los costos que usa la calculadora de presupuesto. Los cambios se guardan
+                        en este navegador. Si abrís el sitio desde otra computadora, va a mostrar los valores
+                        por defecto hasta que los edites ahí también.
+                    </p>
+
+                    <form id="formTarifas" novalidate>
+
+                        <h3 style="font-family: var(--font-heading); color: var(--color-primary); margin-bottom: var(--space-sm);">Camiones</h3>
+                        <div id="camionesContainer"></div>
+
+                        <hr class="my-4">
+
+                        <h3 style="font-family: var(--font-heading); color: var(--color-primary); margin-bottom: var(--space-sm);">Otros costos</h3>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="costoPeon" class="form-label form-label-custom">Costo por peón ($)</label>
+                                <input type="number" class="form-control" id="costoPeon" min="0">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="horasIncluidas" class="form-label form-label-custom">Horas incluidas</label>
+                                <input type="number" class="form-control" id="horasIncluidas" min="0" step="0.5">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="costoHoraExtra" class="form-label form-label-custom">Costo hora extra ($)</label>
+                                <input type="number" class="form-control" id="costoHoraExtra" min="0">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="recargoSinAscensor" class="form-label form-label-custom">Recargo sin ascensor ($)</label>
+                                <input type="number" class="form-control" id="recargoSinAscensor" min="0">
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4 d-flex gap-3 justify-content-center flex-wrap">
+                            <button type="submit" class="btn-primary-custom" style="border: none;">
+                                <i class="bi bi-check-circle"></i> Guardar cambios
+                            </button>
+                            <button type="button" id="btnReset" class="btn btn-outline-secondary">
+                                Restaurar valores por defecto
+                            </button>
+                        </div>
+
+                        <div class="result-box" id="msgGuardado" style="display: none;">
+                            <i class="bi bi-check-circle" style="color: var(--color-success);"></i>
+                            Tarifas guardadas correctamente.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="copyright">© 2026 FletesYA - Hecho en Argentina</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/tarifas.js"></script>
+    <script>
+        const tarifas = getTarifas();
+        const camionesContainer = document.getElementById('camionesContainer');
+        tarifas.camiones.forEach(function (camion, index) {
+            const row = document.createElement('div');
+            row.className = 'row g-3 mb-3 align-items-end';
+            row.innerHTML = `
+                <div class="col-md-4">
+                    <label class="form-label form-label-custom">Nombre</label>
+                    <input type="text" class="form-control camion-nombre" data-index="${index}" value="${camion.nombre}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label form-label-custom">Costo base ($)</label>
+                    <input type="number" class="form-control camion-base" data-index="${index}" min="0" value="${camion.costoBase}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label form-label-custom">Costo por km ($)</label>
+                    <input type="number" class="form-control camion-km" data-index="${index}" min="0" value="${camion.costoKm}">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label form-label-custom">Capacidad (kg)</label>
+                    <input type="number" class="form-control camion-capacidad" data-index="${index}" min="0" value="${camion.capacidadKg}">
+                </div>
+            `;
+            camionesContainer.appendChild(row);
+        });
+
+        document.getElementById('costoPeon').value = tarifas.costoPeon;
+        document.getElementById('horasIncluidas').value = tarifas.horasIncluidas;
+        document.getElementById('costoHoraExtra').value = tarifas.costoHoraExtra;
+        document.getElementById('recargoSinAscensor').value = tarifas.recargoSinAscensor;
+
+        document.getElementById('formTarifas').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nombres = document.querySelectorAll('.camion-nombre');
+            const bases = document.querySelectorAll('.camion-base');
+            const kms = document.querySelectorAll('.camion-km');
+            const capacidades = document.querySelectorAll('.camion-capacidad');
+
+            const nuevosCamiones = tarifas.camiones.map(function (camion, i) {
+                return {
+                    id: camion.id,
+                    nombre: nombres[i].value,
+                    costoBase: parseFloat(bases[i].value) || 0,
+                    costoKm: parseFloat(kms[i].value) || 0,
+                    capacidadKg: parseFloat(capacidades[i].value) || 0
+                };
+            });
+
+            const nuevasTarifas = {
+                camiones: nuevosCamiones,
+                costoPeon: parseFloat(document.getElementById('costoPeon').value) || 0,
+                horasIncluidas: parseFloat(document.getElementById('horasIncluidas').value) || 0,
+                costoHoraExtra: parseFloat(document.getElementById('costoHoraExtra').value) || 0,
+                recargoSinAscensor: parseFloat(document.getElementById('recargoSinAscensor').value) || 0,
+                actualizado: new Date().toISOString().slice(0, 10)
+            };
+
+            saveTarifas(nuevasTarifas);
+
+            const msg = document.getElementById('msgGuardado');
+            msg.style.display = 'block';
+            msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        document.getElementById('btnReset').addEventListener('click', function () {
+            if (confirm('¿Restaurar todos los valores por defecto? Se perderán los cambios guardados.')) {
+                resetTarifas();
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
